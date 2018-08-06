@@ -10,7 +10,7 @@ import java.util.Collection;
 public interface BookRepository extends CrudRepository<Book, Integer> {
 
     @Trace
-    Collection<Book> findByName(String name);
+    Collection<Book> findByBookname(String bookname);
     
     //@Query("SELECT * FROM /Book p WHERE p.email LIKE $1")
     //Collection<Book> getBooksByEmailLike(String email);
