@@ -1,0 +1,52 @@
+Book={
+	long 	ISDN;
+	String	author;
+	String	bookname;
+	String	publish;
+}
+
+Book book1 = {1,"Alex",Java","Q"};
+Book book2 = {2,"Blex",C","W"};
+
+URL 设计：
+A.select:
+	1. select all
+		/books
+		{"ISDN":1,"author":"Alex",bookname":"Java","publish":"Q"},{"ISDN":2,"author":"Blex",bookname"="C","publish"="W"}
+	2.select by ISDN
+		/book/ISDN/{ISDN}
+		/book/ISDN/1
+		{"ISDN":1,"author":"Alex",bookname":"Java","publish":"Q"}
+	3.select by author
+		/book/author/{author}
+		/book/author/Alex
+		{"ISDN":1,"author":"Alex",bookname":"Java","publish":"Q"}
+	3.select by bookname
+		/book/bookname/{bookname}
+		/book/bookname/Java
+		{"ISDN":1,"author":"Alex",bookname":"Java","publish":"Q"}
+	4.select by publish
+		/book/publish/{publish}
+		/book/publish/Q
+		{"ISDN":1,"author":"Alex",bookname":"Java","publish":"Q"}
+
+B.update:
+	1. update
+		/book/update?ISDN=***&author=***&bookname=***&publish=***
+		/book/update?ISDN=1&author=Alex&bookname=C++&publish=Q
+		{"ISDN":1,"author":"Alex",bookname":"C++","publish":"Q"}
+
+C.delete:
+	1.delete all
+		/book/deleteall
+		succeed
+	2.delete by ISDN
+		/book/deleteby/ISDN/{ISDN}
+		/book/deleteby/ISDN/1
+		{"ISDN":1,"author":"Alex",bookname":"C++","publish":"Q"}
+
+D.add:
+	1.add a book
+		/book/update?ISDN=***&author=***&bookname=***&publish=***
+		/book/update?ISDN=1&author=Alex&bookname=Java&publish=Q
+		{"ISDN":1,"author":"Alex",bookname":"Java","publish":"Q"}
