@@ -7,11 +7,17 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Collection;
 
-public interface BookRepository extends CrudRepository<Book, Integer> {
+public interface BookRepository extends CrudRepository<Book, String> {
 
     @Trace
-    Collection<Book> findByBookname(String bookname);
-    
+    Collection<Book> findBookBybookName(String bookName);
+
+
+    @Query("SELECT * FROM /Book")
+    Collection<Book> findAllBooks();
+
+
+
     //@Query("SELECT * FROM /Book p WHERE p.email LIKE $1")
     //Collection<Book> getBooksByEmailLike(String email);
 
