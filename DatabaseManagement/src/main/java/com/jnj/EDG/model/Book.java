@@ -27,63 +27,150 @@ public class Book {
 
     //private static final long serialVersionUid = 1L;
 
-    Integer ISDN;
+    /*    Integer ISDN;
 
+        @Indexed
+        String author;
+
+        String bookname;
+
+        @LuceneIndexed
+        String publish;*/
     @Indexed
+    String id;
+
+    String bookName;
+
     String author;
+    String publisher;
+    String ISBN;
+    String ASIN;
+    String category;
+    String vendor;
+    String borrowDate;
+    String backDate;
 
-    String bookname;
-
-    @LuceneIndexed
-    String publish;
 
     @PersistenceConstructor
-    public Book(int ISDN, String author, String bookname, String publish) {
-        this.ISDN = ISDN;
+    public Book(String bookName, String author, String publisher, String ISBN, String ASIN, String category, String vendor) {
+        if (ISBN.isEmpty()) {
+            if (ASIN.isEmpty()) {
+                System.out.println("Key is not found!");
+                id = null;
+            } else {
+                //System.out.println("ISBN to id");
+                id = ASIN;
+            }
+        } else {
+            //System.out.println("ASIN to id");
+            id = ISBN;
+        }
+
+        this.bookName = bookName;
         this.author = author;
-        this.bookname = bookname;
-        this.publish = publish;
+        this.publisher = publisher;
+        this.ISBN = ISBN;
+        this.ASIN = ASIN;
+        this.category = category;
+        this.vendor = vendor;
+        this.borrowDate = null;
+        this.backDate = null;
     }
 
-    public int getISDN() {
-        return ISDN;
+    public String getBorrowDate() {
+        return borrowDate;
     }
 
-    public void setISDN(int ISDN) {
-        this.ISDN = ISDN;
+    public void setBorrowDate(String borrowDate) {
+        this.borrowDate = borrowDate;
     }
 
-    public String getauthor() {
+    public String getBackDate() {
+        return backDate;
+    }
+
+    public void setBackDate(String backDate) {
+        this.backDate = backDate;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public String getAuthor() {
         return author;
     }
 
-    public void setauthor(String author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
-    public String getbookname() {
-        return bookname;
+    public String getPublisher() {
+        return publisher;
     }
 
-    public void setbookname(String bookname) {
-        this.bookname = bookname;
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
 
-    public String getpublish() {
-        return publish;
+    public String getISBN() {
+        return ISBN;
     }
 
-    public void setpublish(String publish) {
-        this.publish = publish;
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
     }
+
+    public String getASIN() {
+        return ASIN;
+    }
+
+    public void setASIN(String ASIN) {
+        this.ASIN = ASIN;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
 
     @Override
     public String toString() {
-        return "Book2String{" +
-                "ISDN=" + ISDN +
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", bookName='" + bookName + '\'' +
                 ", author='" + author + '\'' +
-                ", bookname=" + bookname +
-                ", publish='" + publish + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                ", ASIN='" + ASIN + '\'' +
+                ", category='" + category + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", borrowDate='" + borrowDate + '\'' +
+                ", backDate='" + backDate + '\'' +
                 '}';
     }
 }
