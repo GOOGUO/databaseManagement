@@ -49,6 +49,7 @@ public class Book {
     String vendor;
     String borrowDate;
     String backDate;
+    int bookNumber ;
 
 
     @PersistenceConstructor
@@ -75,6 +76,15 @@ public class Book {
         this.vendor = vendor;
         this.borrowDate = null;
         this.backDate = null;
+        this.bookNumber = 1;
+    }
+
+    public int getBookNumber() {
+        return bookNumber;
+    }
+
+    public void setBookNumber(int bookNumber) {
+        this.bookNumber = bookNumber;
     }
 
     public String getBorrowDate() {
@@ -171,6 +181,7 @@ public class Book {
                 ", vendor='" + vendor + '\'' +
                 ", borrowDate='" + borrowDate + '\'' +
                 ", backDate='" + backDate + '\'' +
+                ", bookNumber=" + bookNumber +
                 '}';
     }
 }
