@@ -1,14 +1,15 @@
-package com.jnj.maven.controller;
+package com.jnj.EDG.controller;
 /*
 Author;AlexLi
 Description;BookController调用BookService，注意下这里的BookController使用@RestController注解来标注，另外URL路径命名按照RESTful风格来命名；
 
 
  */
-import com.jnj.maven.entity.Book;
 
-import com.jnj.maven.repository.BookRepository;
-import com.jnj.maven.service.BookService;
+import com.jnj.EDG.entity.BookM;
+import com.jnj.EDG.repository.BookRepository;
+import com.jnj.EDG.service.BookService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,9 +36,9 @@ public class BookController {
                                    @RequestParam(value = "backDate", required = true) String backDate,
                                    @RequestParam(value = "borrowNumber", required = true) String borrowNumber){
 
-        Book book = new Book(id,bookName,author,Publisher,ISBN,ASIN,Category,vendor,borrowDate,backDate,borrowNumber);
-        bookService.saveBook(book);
-        return book.toString();
+        BookM bookM = new BookM(id,bookName,author,Publisher,ISBN,ASIN,Category,vendor,borrowDate,backDate,borrowNumber);
+        bookService.saveBook(bookM);
+        return bookM.toString();
     }
     //根据id更新书籍信息
     @RequestMapping(value = "/update/id",method=RequestMethod.GET)
@@ -53,8 +54,8 @@ public class BookController {
                               @RequestParam(value = "backDate", required = true) String backDate,
                               @RequestParam(value = "borrowNumber", required = true) String borrowNumber){
 
-        Book book = new Book(id,bookName,author,Publisher,ISBN,ASIN,Category,vendor,borrowDate,backDate,borrowNumber);
-        bookService.updateBook(book);
+        BookM bookM = new BookM(id,bookName,author,Publisher,ISBN,ASIN,Category,vendor,borrowDate,backDate,borrowNumber);
+        bookService.updateBook(bookM);
         return "更新成功";
     }
 
@@ -74,20 +75,20 @@ public class BookController {
 
     //查询全部书籍信息
     @RequestMapping(value = "/")
-    public List<Book> getBooks() {
+    public List<BookM> getBooks() {
         return bookService.findAll();
     }
     //通过id查询书籍信息
     @RequestMapping(value = "/search/id/{id}")
-    public List<Book> getBookById(@PathVariable long id) {
-        List<Book> book1 = bookRepository.findById(id);
+    public List<BookM> getBookById(@PathVariable long id) {
+        List<BookM> book1 = bookRepository.findById(id);
         return book1;
     }
     //通过bookName查询书籍信息
     @RequestMapping(value = "/search/bookName/{bookName}")
-    public List<Book> getBookByBookName(@PathVariable String bookName) {
-        List<Book> book = bookService.findByBookName(bookName);
-        return book;
+    public List<BookM> getBookByBookName(@PathVariable String bookName) {
+        List<BookM> bookM = bookService.findByBookName(bookName);
+        return bookM;
     }
 }
 

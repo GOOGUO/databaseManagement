@@ -1,72 +1,49 @@
-package com.jnj.EDG.model;
+package com.jnj.EDG.entity;
+/*
+Author：AlexLi
+Description：创建了一个实体类
+ */
 
-import org.apache.geode.cache.DataPolicy;
-import org.apache.geode.cache.CacheFactory;
-import org.apache.geode.cache.GemFireCache;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.data.gemfire.PartitionedRegionFactoryBean;
-import org.springframework.data.gemfire.mapping.annotation.Indexed;
-import org.springframework.data.gemfire.mapping.annotation.LuceneIndexed;
-import org.springframework.data.gemfire.mapping.annotation.Region;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import java.io.Serializable;
-
-@Region("Book")
-public class Book {
-/*    PartitionedRegionFactoryBean exampleRegion(GemFireCache gemfireCache) {
-
-        PartitionedRegionFactoryBean<Long, Example> exampleRegion =
-                new PartitionedRegionFactoryBean<>();
-
-        exampleRegion.setDataPolicy(DataPolicy.PERSISTENT_REPLICATE);
-
-        return exampleRegion;
-    }*/
+@Entity
 
 
-    //private static final long serialVersionUid = 1L;
-
-    /*    Integer ISDN;
-
-        @Indexed
-        String author;
-
-        String bookname;
-
-        @LuceneIndexed
-        String publish;*/
-    @Indexed
-    String id;
-
+public class BookM implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    long id;
+    @Column(name = "bookName")
     String bookName;
-
+    @Column(name = "author")
     String author;
+    @Column(name="publish")
     String publisher;
+    @Column(name="ISBN")
     String ISBN;
+    @Column(name="ASIN")
     String ASIN;
+    @Column(name="category")
     String category;
+    @Column(name="vendor")
     String vendor;
+    @Column(name="borrowDate")
     String borrowDate;
+    @Column(name="backDate")
     String backDate;
-    int bookNumber ;
+    @Column(name="bookNumber")
+    String bookNumber;
 
+    public BookM(){
 
-    @PersistenceConstructor
-    public Book(String bookName, String author, String publisher, String ISBN, String ASIN, String category, String vendor) {
-        if (ISBN.isEmpty()) {
-            if (ASIN.isEmpty()) {
-                System.out.println("Key is not found!");
-                id = null;
-            } else {
-                //System.out.println("ISBN to id");
-                id = ASIN;
-            }
-        } else {
-            //System.out.println("ASIN to id");
-            id = ISBN;
-        }
+    }
 
+    public BookM(long id, String bookName, String author, String publisher, String ISBN, String ASIN, String category, String vendor, String borrowDate, String backDate, String bookNumber) {
+        this.id = id;
         this.bookName = bookName;
         this.author = author;
         this.publisher = publisher;
@@ -74,16 +51,8 @@ public class Book {
         this.ASIN = ASIN;
         this.category = category;
         this.vendor = vendor;
-        this.borrowDate = null;
-        this.backDate = null;
-        this.bookNumber = 1;
-    }
-
-    public int getBookNumber() {
-        return bookNumber;
-    }
-
-    public void setBookNumber(int bookNumber) {
+        this.borrowDate = borrowDate;
+        this.backDate = backDate;
         this.bookNumber = bookNumber;
     }
 
@@ -103,16 +72,24 @@ public class Book {
         this.backDate = backDate;
     }
 
-    public String getBookName() {
-        return bookName;
+    public String getBookNumber() {
+        return bookNumber;
     }
 
-    public String getId() {
+    public void setBookNumber(String bookNumber) {
+        this.bookNumber = bookNumber;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public String getBookName() {
+        return bookName;
     }
 
     public void setBookName(String bookName) {
@@ -167,11 +144,10 @@ public class Book {
         this.vendor = vendor;
     }
 
-
     @Override
     public String toString() {
-        return "Book{" +
-                "id='" + id + '\'' +
+        return "BookM{" +
+                "id=" + id +
                 ", bookName='" + bookName + '\'' +
                 ", author='" + author + '\'' +
                 ", publisher='" + publisher + '\'' +
@@ -181,7 +157,7 @@ public class Book {
                 ", vendor='" + vendor + '\'' +
                 ", borrowDate='" + borrowDate + '\'' +
                 ", backDate='" + backDate + '\'' +
-                ", bookNumber=" + bookNumber +
+                ", bookNumber='" + bookNumber + '\'' +
                 '}';
     }
 }
