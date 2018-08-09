@@ -1,10 +1,13 @@
+/*
 package com.jnj.EDG.controller;
+*/
 /*
 Author;AlexLi
 Description;BookController调用BookService，注意下这里的BookController使用@RestController注解来标注，另外URL路径命名按照RESTful风格来命名；
 
 
- */
+ *//*
+
 
 import com.jnj.EDG.entity.BookM;
 import com.jnj.EDG.repository.BookRepository;
@@ -93,3 +96,4 @@ public class BookController {
 }
 
 
+*/
