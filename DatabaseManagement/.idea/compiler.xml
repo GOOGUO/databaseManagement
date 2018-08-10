@@ -9,5 +9,8 @@
         <module name="DatabaseManagement" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DatabaseManagement" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
