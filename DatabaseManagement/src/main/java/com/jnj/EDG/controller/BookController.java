@@ -12,6 +12,7 @@ import com.jnj.EDG.repository.BookRepository;
 import com.jnj.EDG.service.BookService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
@@ -19,9 +20,22 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping(value = "MySQL/books")
 public class BookController {
+    //file数据源
+    @Value("${book_file}")
+    private String book_file;
+
+    //mysql数据源
+    @Value("${book_mysql}")
+    private String book_mysql;
+
+    //gemfire
+    @Value("${book_gemfire}")
+    private String book_gemfire;
+
     @Autowired
     private BookService bookService;
     @Autowired
@@ -89,9 +103,9 @@ public class BookController {
 
     //通过id查询书籍信息
     @RequestMapping(value = "/search/id/{id}")
-    public Optional<Book> getBookById(@PathVariable String id) {
-        Optional<Book> book=bookService.findById(id);
-        return book;
+    public String getBookById(@PathVariable String id) {
+       // bookService.findById(id);
+         return  bookService.findById(id);
     }
 
     //通过bookName查询书籍信息

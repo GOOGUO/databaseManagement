@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -77,7 +76,7 @@ public class MysqlServiceImpl implements BookService {
     }
 
     //通过id查找书籍
-    public Optional<Book> findById(String id) {
-        return bookRepository.findById(id);
+    public String findById(String id) {
+        return bookRepository.findById(id).toString();
     }
 }

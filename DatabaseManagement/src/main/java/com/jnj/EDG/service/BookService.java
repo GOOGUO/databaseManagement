@@ -4,7 +4,6 @@ import com.jnj.EDG.entity.Book;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BookService {
 
@@ -28,6 +27,6 @@ public interface BookService {
     public List<Book> findByBookName(String bookName);
 
     //通过id查找书籍
-    public Optional<Book> findById(String id);
+    public String findById(String id);
 
 }
