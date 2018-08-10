@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class BookServiceImpl implements BookService {
+public class MysqlServiceImpl implements BookService {
     @Autowired
     private BookRepository bookRepository;
 
@@ -41,7 +41,7 @@ public class BookServiceImpl implements BookService {
     //通过id删除书籍的方法
     @Override
     public void deleteById(String id) {
-        bookRepository.findById(id);
+        bookRepository.deleteById(id);
     }
 
     @Override

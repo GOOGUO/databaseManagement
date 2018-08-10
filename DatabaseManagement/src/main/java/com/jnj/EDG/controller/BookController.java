@@ -38,11 +38,11 @@ public class BookController {
                                    @RequestParam(value = "publisher", required = true) String publisher,
                                    @RequestParam(value = "ISBN", required = true) String ISBN,
                                    @RequestParam(value = "ASIN", required = true) String ASIN,
-                                   @RequestParam(value = "Category", required = true) String Category,
+                                   @RequestParam(value = "category", required = true) String category,
                                    @RequestParam(value = "vendor", required = true) String vendor
     ) {
 
-        Book book = new Book(bookName, author, publisher, ISBN, ASIN, Category, vendor);
+        Book book = new Book(bookName, author, publisher, ISBN, ASIN, category, vendor);
         if (book.getId() == null) {
             return "未发现主键，未添加书籍";
         } else {
@@ -53,7 +53,7 @@ public class BookController {
 
     //添加书籍信息
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addBook(@RequestParam  String bookName, String author, String publisher, String ISBN, String ASIN, String category, String vendor) {
+    public String addBook(@RequestParam  String author,String bookName,  String publisher, String ISBN, String ASIN, String category, String vendor) {
         bookService.addBook(bookName,author, publisher, ISBN, ASIN, category, vendor);
         return "书籍添加成功";
     }
