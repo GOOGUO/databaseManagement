@@ -1,0 +1,103 @@
+﻿Book={
+        String  id
+        String	bookname;
+	String	author;
+	String  publisher;
+	String 	ISBN;
+	String  ASIN;
+	String  category;
+	String  vendor;
+	String  borrowDate;
+  	String  backDate;
+	int     bookNumber
+}
+
+----------------- 客户端测试 ----------------
+1.运行服务端代码
+2.运行客户端代码
+  ①客户端多线程运行后在控制台输出：
+                     pool-1-thread-1启动了
+                     pool-1-thread-2启动了
+                     pool-1-thread-1结束了
+                     pool-1-thread-2结束了
+  ②读取文件后控制台输出：
+                     第1本书输出完毕
+                     第2本书输出完毕
+                     第3本书输出完毕
+                     第4本书输出完毕
+                     第5本书输出完毕
+                     第6本书输出完毕
+                     第7本书输出完毕
+                     第8本书输出完毕
+                     第9本书输出完毕
+                     第10本书输出完毕
+                     第11本书输出完毕
+                     第12本书输出完毕
+                     ##############传输完毕！
+  ③文件被读取后在URL输入localhost:8080/books后即可查询到从客户端读取的文件内容
+
+
+---------------- 测试数据库内容---------------
+Book book1 = {id:"9780131872486",bookname:"Java编程思想",author:"Bruce Eckel", publisher:"Prentice Hall",ISBN:"9780131872486", 
+	      ASIN:"",category:"Computers",vendor:"Amazon",borrowDate:"null",backDate:"null",bookNumber:1};
+
+
+----------------- URL测试 --------------------
+
+
+A.select(查找):
+	1. select all（选择数据库中所有的数据）
+	      URL   : /books
+	      e.g.1 : input--localhost:8080/books
+		      output--{id:"9780131872486",bookname:"Java编程思想",author:"Bruce Eckel", publisher:"Prentice Hall",ISBN:"9780131872486", 
+		               ASIN:"",category:"Computers",vendor:"Amazon",borrowDate:"null",backDate:"null",bookNumber:1};
+
+	2.select by id （根据输入的ID在数据库中筛选结果）
+	      URL   : /books/search/id/{id}
+	      e.g.2 : input1 --localhost:8080/books/search/id/ISDN/9780131872486
+		      output1--{id:"9780131872486",bookname:"Java编程思想",author:"Bruce Eckel", publisher:"Prentice Hall", ISBN:"9780131872486",
+	                       ASIN:"",category:"Computers",vendor:"Amazon",borrowDate:"null",backDate:"null",bookNumber:1};
+
+                      input2 -- localhost:8080/books/search/id/ISDN/9
+                      output2-- URL显示500
+                      
+	3.select by bookname （根据输入的bookname在数据库中筛选结果）
+	      URL   : /books/search/bookName/{bookName}
+	      e.g.3 : input1 --localhost:8080/books/search/bookName/Java编程思想
+		      output1--{id:"9780131872486",bookname:"Java编程思想",author:"Bruce Eckel", publisher:"Prentice Hall",ISBN:"9780131872486",
+	                        ASIN:"",category:"Computers",vendor:"Amazon",borrowDate:"null",backDate:"null",bookNumber:1};
+
+                      input2 -- localhost:8080/books/search/bookName/Java
+                      output2-- URL显示500
+	
+
+
+B.update（更新）:
+	1. update （根据ID更新数据库中对应书的内容）
+               URL   : /books/update/id?bookname=***&author=***&publisher=***&ISBN=***&ASIN=***&category=***&vendor=***;
+	       e.g.3 : input1 --localhost:8080/books/update/id?bookname=Java&author=Bruce Eckel&publisher=Prentice Hall&ISBN=9780131872486&ASIN=""&
+                                          category=Computers&vendor=NewAmazon  (update vendor)
+		       output1--URL显示更新成功    
+                                                             
+C.add（增加）:
+	1.add a book （在数据库中新增一本书）
+               URL   : /books/add?bookname=***&author=***&publisher=***&ISBN=***&ASIN=***&category=***&vendor=***;
+               e.g.4 : input1 --localhost:8080/books/add?bookname=Java&author=Mark&publisher=computer&ISBN=1&
+                                ASIN=""&category=Computers&vendor=JD
+		       output1--URL显示书籍添加成功
+		       input2 --localhost:8080/books/add/?author=Bruce Eckel&publisher=Prentice Hall&ISBN=9780131872486&ASIN=""&
+                                          category=Computers&vendor=NewAmazon  (update vendor)
+		       output2--URL显示500(缺少bookName字段)，并且将日志打印在控制台中  
+		
+
+D.delete（删除）:
+	1.delete all （删除所有书）
+               URL   : /books/deleteAll
+               e.g.4 : input1 --localhost:8080/books/deleteAll
+		       output1--URL显示所有书籍信息已删除
+                       
+	2.delete by ID （根据ID删除书）
+               URL   : /books/delete/{id}
+               e.g.4 : input1 --localhost:8080/books/delete/9780131872486
+		       output1--URL显示书籍已删除  
+
