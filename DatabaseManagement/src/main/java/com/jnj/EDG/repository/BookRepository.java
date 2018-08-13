@@ -1,17 +1,18 @@
 package com.jnj.EDG.repository;
 
-import com.jnj.EDG.entity.BookM;
+import com.jnj.EDG.entity.Book;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
 import java.util.List;
 
 
-public interface BookRepository extends JpaRepository<BookM,Long> {
+public interface BookRepository extends JpaRepository<Book,String> {
 
-   List<BookM> findByBookName(String bookName);
+  List<Book> findByBookName(String bookName);
 
-   List<BookM> findById(long id);
+
 
 
 
