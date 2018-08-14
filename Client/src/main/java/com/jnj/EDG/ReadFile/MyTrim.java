@@ -3,6 +3,8 @@ package com.jnj.EDG.ReadFile;
 import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MyTrim {
     public static ArrayList<String>  structureLineOfCsv(String lineOfCsv){
@@ -30,6 +32,12 @@ public class MyTrim {
         //System.out.println(structureLine);
         return structureLine;
     }
+    public String replaceBlank(String str){
+        Pattern pt=Pattern.compile("^\\s*|\\s*$");
+        Matcher mt=pt.matcher(str);
+        str=mt.replaceAll("");
+        return str;
+    }
 
     public static String myTrim(String word) {
         while(!word.isEmpty()
@@ -37,7 +45,8 @@ public class MyTrim {
                 && (word.substring(0,1).equals(" ")
                 || word.substring(0,1).equals("　")
                 || word.substring(0,1).equals(" ")
-                || word.substring(word.length()-1).equals(("\u00a0")))){
+                || word.substring(0,1).equals(" ")
+                || word.substring(0,1).equals(("\u00a0")))){
             //System.out.println("beforeword:"+word);
             word = word.substring(1);
             //System.out.println("after word:"+word);
@@ -47,6 +56,8 @@ public class MyTrim {
                 && !word.equals("")
                 && (word.substring(word.length()-1).equals(" ")
                 || word.substring(word.length()-1).equals("　")
+                || word.substring(word.length()-1).equals(" ")
+                || word.substring(word.length()-1).equals(" ")
                 || word.substring(word.length()-1).equals(("\u00a0")))){
             word = word.substring(0,word.length()-2);
         }

@@ -1,8 +1,7 @@
+/*
 
 package com.jnj.EDG.controller;
 
-import com.jnj.EDG.entity.BookF;
-import com.jnj.EDG.service.BookFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -99,7 +98,6 @@ public class FileController {
     }
 }
 
-/*
 
   @RequestMapping(value = "/Books", method = RequestMethod.GET)
     public Collection<Book> findAllBooks(){
@@ -121,5 +119,7 @@ public class FileController {
         return p.toString();
 
 
-    }*/
+    }
 
+
+*/

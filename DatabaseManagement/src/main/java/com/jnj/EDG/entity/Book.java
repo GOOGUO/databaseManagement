@@ -10,13 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import java.io.Serializable;
+
 @Entity
-
-
-public class BookM implements Serializable {
+public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    long id;
+    String id;
     @Column(name = "bookName")
     String bookName;
     @Column(name = "author")
@@ -36,14 +35,22 @@ public class BookM implements Serializable {
     @Column(name="backDate")
     String backDate;
     @Column(name="bookNumber")
-    String bookNumber;
+    int  bookNumber;
 
-    public BookM(){
+    public Book(){
 
     }
 
-    public BookM(long id, String bookName, String author, String publisher, String ISBN, String ASIN, String category, String vendor, String borrowDate, String backDate, String bookNumber) {
-        this.id = id;
+    public Book(String bookName, String author, String publisher, String ISBN, String ASIN, String category, String vendor) {
+        if (ISBN.isEmpty()){
+            if(ASIN.isEmpty()) {
+                System.out.println("Key is not found!");
+            }else{
+                id=ASIN;
+            }
+        }else{
+            id=ISBN;
+        }
         this.bookName = bookName;
         this.author = author;
         this.publisher = publisher;
@@ -51,40 +58,17 @@ public class BookM implements Serializable {
         this.ASIN = ASIN;
         this.category = category;
         this.vendor = vendor;
-        this.borrowDate = borrowDate;
-        this.backDate = backDate;
-        this.bookNumber = bookNumber;
+        this.borrowDate = null;
+        this.backDate = null;
+        this.bookNumber =1;
     }
 
-    public String getBorrowDate() {
-        return borrowDate;
-    }
 
-    public void setBorrowDate(String borrowDate) {
-        this.borrowDate = borrowDate;
-    }
-
-    public String getBackDate() {
-        return backDate;
-    }
-
-    public void setBackDate(String backDate) {
-        this.backDate = backDate;
-    }
-
-    public String getBookNumber() {
-        return bookNumber;
-    }
-
-    public void setBookNumber(String bookNumber) {
-        this.bookNumber = bookNumber;
-    }
-
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

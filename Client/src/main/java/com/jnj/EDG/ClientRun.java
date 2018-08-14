@@ -91,10 +91,10 @@ public class ClientRun {
                 //}
                 paramMap.add("bookName",book.get(0));
                 paramMap.add("author",book.get(1));
-                paramMap.add("Publisher", book.get(2));
+                paramMap.add("publisher", book.get(2));
                 paramMap.add("ISBN",book.get(3));
                 paramMap.add("ASIN",book.get(4));
-                paramMap.add("Category",book.get(5));
+                paramMap.add("category",book.get(5));
                 paramMap.add("vendor", book.get(6));
                 //System.out.println("书本信息：" + paramMap);
                 postBooks.postBooks(paramMap);

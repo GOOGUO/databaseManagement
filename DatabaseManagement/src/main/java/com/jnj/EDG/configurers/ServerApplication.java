@@ -1,3 +1,4 @@
+/*
 package com.jnj.EDG.configurers;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -18,11 +19,14 @@ public class ServerApplication {
     }
 }
 
+*/
 /*    ClientCacheConfigurer clientCachePoolPortConfigurer(
             @Value("${gemfire.cache.server.host}") String cacheServerHost,
             @Value("${gemfire.cache.server.port}") int cacheServerPort) {
         return (beanName, clientCacheFactoryBean) -> {
             clientCacheFactoryBean.setServers(Collections.singletonList(new ConnectionEndpoint(cacheServerHost, cacheServerPort)));
         };
-    }*/
+    }*//*
 
+
+*/
