@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import java.util.ArrayList;
 
 public class MyTrim {
-    public static ArrayList<String>  structureLineOfCsv(String lineOfCsv){
+    public static ArrayList<String> structureLineOfCsv(String lineOfCsv) {
         String[] stringsSplited = lineOfCsv.split(",");
         ArrayList<String> structureLine = new ArrayList<>();
         int countWithStringsSplit = 0;
@@ -27,38 +27,27 @@ public class MyTrim {
                 ++countWithStringsSplit;
             }
         }
-        //System.out.println(structureLine);
         return structureLine;
     }
 
     public static String myTrim(String word) {
-        while(!word.isEmpty()
+        while (!word.isEmpty()
                 && !word.equals("")
-                && (word.substring(0,1).equals(" ")
-                || word.substring(0,1).equals("　")
-                || word.substring(0,1).equals(" ")
-                || word.substring(word.length()-1).equals(("\u00a0")))){
-            //System.out.println("beforeword:"+word);
+                && (word.substring(0, 1).equals(" ")
+                || word.substring(0, 1).equals("　")
+                || word.substring(0, 1).equals(" ")
+                || word.substring(word.length() - 1).equals(("\u00a0")))) {
             word = word.substring(1);
-            //System.out.println("after word:"+word);
 
         }
-        while(!word.isEmpty()
+        while (!word.isEmpty()
                 && !word.equals("")
-                && (word.substring(word.length()-1).equals(" ")
-                || word.substring(word.length()-1).equals("　")
-                || word.substring(word.length()-1).equals(("\u00a0")))){
-            word = word.substring(0,word.length()-2);
+                && (word.substring(word.length() - 1).equals(" ")
+                || word.substring(word.length() - 1).equals("　")
+                || word.substring(word.length() - 1).equals(("\u00a0")))) {
+            word = word.substring(0, word.length() - 2);
         }
 
         return word;
-    }
-    public static void main(String[] args) {
-        MyTrim myTrim = new MyTrim();
-        myTrim.structureLineOfCsv("\"1,    2,　　3\",4    ,5,6,7");
-        char a = ' ';
-        char b = ' ';
-
-        System.out.println("  char-|||"+("\u00a0")+"|||byte-a:"+(byte)a+"|||byte-b"+(byte)b);
     }
 }

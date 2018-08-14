@@ -12,7 +12,8 @@ class MyThead implements Callable {
     int end;
     File file;
     ArrayList<String> lineList = new ArrayList<>();
-    public MyThead(int start, int end,File file) {
+
+    public MyThead(int start, int end, File file) {
         this.start = start;
         this.end = end;
         this.file = file;
@@ -21,29 +22,27 @@ class MyThead implements Callable {
     @Override
     public ArrayList<ArrayList<String>> call() {
 
-        System.out.println(Thread.currentThread().getName()+"启动了");
+        System.out.println(Thread.currentThread().getName() + "启动了");
         BufferedReader in = null;
         try {
-            //String filePath = "C:\\somethings\\EDG\\P1-databaseManagement\\data\\mockUpDataForInterns - test.csv";
             in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
             in.skip(start);
-            int readLength = end-start-1;
+            int readLength = end - start - 1;
             ArrayList<ArrayList<String>> lineList = new ArrayList<ArrayList<String>>();
 
             String line = "";
             line = in.readLine();
-            if(line == null){
+            if (line == null) {
                 //停止线程
             }
-            if(start == 0){
+            if (start == 0) {
                 lineList.add(MyTrim.structureLineOfCsv(line));
             }
 
-            //System.out.println(line);
-            while(readLength > 0){
+            while (readLength > 0) {
 
                 line = in.readLine();
-                if(line==null || line == ""){
+                if (line == null || line == "") {
                     break;
                 }
 
@@ -51,7 +50,7 @@ class MyThead implements Callable {
                 lineList.add(MyTrim.structureLineOfCsv(line));
             }
 
-            System.out.println(Thread.currentThread().getName()+"结束了");
+            System.out.println(Thread.currentThread().getName() + "结束了");
             return lineList;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -59,7 +58,7 @@ class MyThead implements Callable {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 in.close();
             } catch (IOException e) {
